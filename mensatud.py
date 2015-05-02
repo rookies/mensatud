@@ -47,4 +47,8 @@ if __name__ == "__main__":
 				tmp.append(m)
 		data["cafeterias"][i]["meals"] = tmp
 		i += 1
-	print(json.dumps(data, indent=2))
+	#print(json.dumps(data, indent=2))
+	print("Vegan am %s:" % data["date"])
+	for caf in data["cafeterias"]:
+		if len(caf["meals"]) != 0:
+			print("%s:\n\t%s" % (caf["name"], "\n\t".join(map(lambda m: "%s (%.2f €)" % (m["name"], m["prices"][0]), caf["meals"]))))

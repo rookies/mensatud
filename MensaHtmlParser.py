@@ -123,7 +123,7 @@ class OverviewParser(Parser, HTMLParser):
 							"name": None,
 							"url": self.get_attr(attrs, "href"),
 							"ingredients": [],
-							"prices": (None, None)
+							"prices": (0, 0)
 						})
 				# 
 				# Prüfen, ob wir uns in Spalte mit Inhaltsstoffen befinden:
@@ -162,10 +162,10 @@ class OverviewParser(Parser, HTMLParser):
 			try:
 				p = float(data.replace("/", "").replace(" ", "").replace(",", "."))
 				t = self.data["cafeterias"][-1]["meals"][-1]["prices"]
-				if t[0] != None:
+				if t[0] != 0:
 					self.data["cafeterias"][-1]["meals"][-1]["prices"] = (t[0], p)
 				else:
-					self.data["cafeterias"][-1]["meals"][-1]["prices"] = (p, None)
+					self.data["cafeterias"][-1]["meals"][-1]["prices"] = (p, 0)
 			except ValueError:
 				print("Error parsing price:", data) # FIXME
 
